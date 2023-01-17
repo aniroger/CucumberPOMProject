@@ -14,6 +14,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
+import org.apache.logging.log4j.*;
+
 public class ApplicationHooks {
 
 	private DriverFactory driverfactory;
@@ -23,6 +25,7 @@ public class ApplicationHooks {
 	private ConfigReader configReader;
 
 	Properties prop;
+	
 	
 	@Before(value = "@Regression" , order = 0)
 	public void skipscenario(Scenario scenario)
@@ -44,7 +47,8 @@ public class ApplicationHooks {
 
 		String browsername = prop.getProperty("browser");
 		driverfactory = new DriverFactory();
-		driver = driverfactory.init_driver(browsername); // here driver is used to avoid nullpointerexcep in line no 42	
+		driver = driverfactory.init_driver(browsername); // here driver is used to avoid nullpointerexcep in line no 42
+		
 	}
 
 	@After(order = 0)
